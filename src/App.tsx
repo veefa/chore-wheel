@@ -1,21 +1,14 @@
-import { useState } from 'react'
+import React from 'react';
+import ChoreWheel from './components/ChoreWheel';
 
 
-function App() {
- 
-
+const App: React.FC = () => {
   return (
-    <>
+    <div className="flex justify-center items-center bg-gray-100 min-h-screen">
+      <h1 className="font-bold text-gray-800 text-3xl">Chore Wheel App</h1>
+      <ChoreWheel/>
+    </div>
+  );
+};
 
-      <div className="card">
-
-
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
-
-export default App
+export default App;
