@@ -34,7 +34,10 @@ const WheelComponent: React.FC<WheelProps> = ({ tasks, rotation, onSpin, spinnin
         width={svgSize}
         height={svgSize}
         viewBox={`0 0 ${svgSize} ${svgSize}`}
-        style={{ transform: `rotate(${rotation}deg)`, transition: "transform 4s ease-out" }}
+        style={{
+          transition: "transform 4s cubic-bezier(0.33, 1, 0.68, 1)", // Smooth out
+          transform: `rotate(${rotation}deg)`,
+        }}
         className="cursor-pointer"
         onClick={!spinning ? onSpin : undefined}
         role="button"
@@ -55,7 +58,7 @@ const WheelComponent: React.FC<WheelProps> = ({ tasks, rotation, onSpin, spinnin
               x2={x}
               y2={y}
               stroke="#273C62"
-              strokeWidth="3"
+              strokeWidth="5"
             />
           );
         })}
