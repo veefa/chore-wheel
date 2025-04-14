@@ -8,15 +8,15 @@ interface WheelProps {
 }
 
 const WheelComponent: React.FC<WheelProps> = ({ tasks, rotation, onSpin, spinning }) => {
-  const svgSize = 508;
-  const radius = svgSize / 2 - 50; // Adjust padding
+  const svgSize = 600;
+  const radius = svgSize / 2 - 10; // Adjust padding
   const center = svgSize / 2;
-  const textRadius = radius - 20;
+  const textRadius = radius - 50;
   const anglePerSlice = 360 / tasks.length;
-  const fontSize = tasks.length > 12 ? 10 : 14;
+  const fontSize = tasks.length > 14 ? 12 : 16;
 
   return (
-    <div className="relative mx-auto w-[300px] h-[300px]">
+    <div className="relative flex justify-center items-center mx-auto w-full max-w-[500px] h-full max-h-[500px]">
       {/* Pointer */}
       <div className="top-1/2 right-0 z-10 absolute -translate-y-1/2 translate-x-[50%]">
         <svg xmlns="http://www.w3.org/2000/svg" width="78" height="47" viewBox="0 0 78 47" fill="none">

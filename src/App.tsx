@@ -10,9 +10,11 @@ const App: React.FC = () => {
   const [selectedChore, setSelectedChore] = useState<string | null>(null);
 
   const calculateSelectedTask = (finalRotation: number) => {
-    const angle = (finalRotation % 360 + 360) % 360; // Normalize angle to 0–359
-    const index = Math.floor((tasks.length - angle / (360 / tasks.length)) % tasks.length);
-    return tasks[Math.abs(index)];
+    const normalized = (finalRotation % 360 + 360) % 360;
+    const sliceAngle = 360 / tasks.length;
+    const adjustedAngle = (normalized + sliceAngle / 2) % 360;
+    const index = Math.floor(adjustedAngle / sliceAngle);
+    return tasks[index];
   };
 
   const handleSpin = () => {
@@ -33,19 +35,30 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center bg-blue-100 p-6 min-h-screen">
-      <h1 className="mb-6 font-bold text-gray-800 text-3xl">Chore Wheel App</h1>
+    <div className="flex flex-col justify-center items-center bg-blue-100 p-4 min-h-screen">
+    <h1 className="mb-8 font-bold text-gray-800 text-3xl text-center">
+      Chore Wheel App
+    </h1>
 
-      <WheelComponent tasks={tasks} rotation={rotation} onSpin={handleSpin} spinning={spinning} />
-      
-      {selectedChore && (
-        <ChoreComponent selectedChore={selectedChore} tasks={tasks} />
-      )}
-
-      {spinning && (
-        <p className="mt-4 text-gray-600">Spinning... Please wait!</p>
-      )}
+    {/* Use grid to align pointer + wheel */}
+    <div className="relative flex justify-center items-center mb-6 w-[300px] h-[300px]">
+      <WheelComponent
+        tasks={tasks}
+        rotation={rotation}
+        onSpin={handleSpin}
+        spinning={spinning}
+      />
     </div>
+
+    {/* Display result below the wheel */}
+    {selectedChore && (
+      <ChoreComponent selectedChore={selectedChore} tasks={tasks} />
+    )}
+
+    {spinning && (
+      <p className="mt-4 text-gray-600">Spinning... Please wait!</p>
+    )}
+  </div>
   );
 };
 
