@@ -13,7 +13,7 @@ const ChoreComponent: React.FC<ChoreComponentProps> = ({ selectedChore, tasks })
           className="mb-4 font-bold text-green-700 text-xl"
           aria-live="polite"
         >
-          🎯 Selected Chore: {selectedChore}
+          Selected Chore: {selectedChore}
         </div>
       ) : (
         <div className="mb-4 text-gray-500 text-sm">
